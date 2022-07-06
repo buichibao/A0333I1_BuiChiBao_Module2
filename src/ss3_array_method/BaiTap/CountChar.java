@@ -9,14 +9,24 @@ public class CountChar {
         String str = "codegymee";
         String[] strings = str.split("");
 
+
         System.out.println("Nhập kí tự cần đếm");
         String c = sc.nextLine();
+        countChar(strings,c);
+
+    }
+    static void countChar(String str[],String c){
         int count=0;
-        for(int i=0;i<strings.length;i++){
-            if(strings[i].equals(c)){
+        for(int i=0;i<str.length;i++){
+            if(str[i].equals(c)){
                 count++;
             }
         }
-        System.out.println("Số kí tự "+c+" trong chuỗi là "+count);
+        if(count==0){
+            System.out.println("Không tìm thấy phần tử");
+        }else {
+            System.out.println("Số kí tự "+c+" trong chuỗi là "+count);
+        }
+
     }
 }
