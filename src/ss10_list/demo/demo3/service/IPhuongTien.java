@@ -5,4 +5,5 @@ public interface IPhuongTien {
     void xoaXe();
     void hienThiDSXe();
     void timBienSoXe();
+
 }

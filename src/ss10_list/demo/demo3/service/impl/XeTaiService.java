@@ -68,7 +68,6 @@ public class XeTaiService implements IPhuongTien {
             }
         }
     }
-
     public XeTai nhapThuocTinhXeTai() {
         System.out.println("Nhập biển số xe :");
         String bienKiemSoat = scanner.nextLine();

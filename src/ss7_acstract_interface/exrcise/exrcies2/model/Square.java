@@ -1,18 +1,32 @@
 package ss7_acstract_interface.exrcise.exrcies2.model;
 
-public class Square extends Rectangle implements Colorable{
-    public Square() {
+public class Square extends Shape implements Colorable{
+    private double side =1.0;
+
+    public Square(){
+
+    }
+    public Square(String color, boolean filled, double side) {
+        super(color, filled);
+        this.side = side;
     }
 
-    public Square(double size) {
-        super(size, size);
+    public Square(double side) {
+        this.side = side;
+    }
 
+    public double getSide() {
+        return side;
+    }
+
+    public void setSide(double side) {
+        this.side = side;
     }
 
     @Override
     public String toString() {
-        return "Square{"
-                +super.getWidth() +"}";
+        return "Square{"+getSide()
+                +super.toString() +"}";
     }
 
     @Override

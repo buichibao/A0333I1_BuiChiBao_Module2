@@ -1,9 +1,13 @@
 package ss7_acstract_interface.exrcise.exrcies2.model;
 
-public class Circle {
-    private double radius= 2;
-    public Circle() {
+public class Circle extends Shape implements Colorable{
+    private double radius= 1;
+    public Circle(){
 
+    }
+    public Circle(String color, boolean filled, double radius) {
+        super(color, filled);
+        this.radius = radius;
     }
 
     public Circle(double radius) {
@@ -24,11 +28,18 @@ public class Circle {
         return 2*Math.PI*this.radius;
     }
 
+
     @Override
     public String toString() {
-        return "Circle{" +
-                "radius=" + radius +
-                '}';
+        return "A Circle with radius = "
+                +getRadius()
+                +",which is a subclass of "
+                +super.toString();
+    }
+
+    @Override
+    public void howToColor() {
+        System.out.println("Hình tròn");
     }
 }
 

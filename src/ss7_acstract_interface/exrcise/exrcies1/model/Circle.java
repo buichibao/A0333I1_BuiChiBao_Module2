@@ -1,13 +1,18 @@
 package ss7_acstract_interface.exrcise.exrcies1.model;
 
-public class Circle implements  Resizeable{
-    private double radius= 2;
-    public Circle() {
+public class Circle extends Shape implements  Resizeable{
+    private  double radius = 1.0;
 
+    public Circle(String color, boolean filled, double radius) {
+        super(color, filled);
+        this.radius = radius;
     }
 
     public Circle(double radius) {
         this.radius = radius;
+    }
+    public Circle(){
+
     }
 
     public double getRadius() {
@@ -17,22 +22,23 @@ public class Circle implements  Resizeable{
     public void setRadius(double radius) {
         this.radius = radius;
     }
-    public double getArea(){
-        return this.radius*this.radius*Math.PI;
+    public double getArea (){
+        return  this.radius*this.radius*Math.PI;
     }
     public double getPerimeter(){
-        return 2*Math.PI*this.radius;
+        return  2*(this.radius)*Math.PI;
     }
 
     @Override
     public String toString() {
-        return "Circle{" +
-                "radius=" + radius +
-                '}';
+        return "A Circle with radius = "
+                +getRadius()
+                +",which is a subclass of "
+                +super.toString();
     }
-
     @Override
     public void resize(double percent) {
-        System.out.println("Diện tích của hình tròn sau khi thay đổi kích thước là "+(getArea()+(getArea()*percent)));
+        setRadius(getRadius()+(getRadius()*percent/100));
+        System.out.println(getRadius()*getRadius()*Math.PI);
     }
 }

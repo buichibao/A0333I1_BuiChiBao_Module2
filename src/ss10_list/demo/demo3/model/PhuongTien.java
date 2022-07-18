@@ -4,7 +4,7 @@ public abstract class PhuongTien {
     private String bienKiemSoat;
     private String tenHang;
     private int namSanXuat;
-    private String chuSoHuu;
+    public String chuSoHuu;
 
     public PhuongTien(){
 

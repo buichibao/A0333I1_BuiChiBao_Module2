@@ -1,9 +1,15 @@
 package ss7_acstract_interface.exrcise.exrcies1.model;
 
-public class Rectangle implements  Resizeable {
-    private double width= 4;
-    private double length= 4;
+public class Rectangle extends Shape implements  Resizeable {
+    private double width= 1.0;
+    private double length= 1.0;
     public Rectangle() {
+    }
+
+    public Rectangle(String color, boolean filled, double width, double length) {
+        super(color, filled);
+        this.width = width;
+        this.length = length;
     }
 
     public Rectangle(double width, double length) {
@@ -26,21 +32,28 @@ public class Rectangle implements  Resizeable {
     public void setLength(double length) {
         this.length = length;
     }
-    public double getArea(){
-        return this.length*this.width;
+    public double getArea() {
+        return width * this.length;
     }
-    public double getPerimeter(){
-        return 2*(this.width+this.length);
+
+    public double getPerimeter() {
+        return 2 * (width + this.length);
     }
+
     @Override
     public String toString() {
-        return "Rectangle{" +
-                "width=" + width +
-                ", length=" + length +
-                '}';
+        return "A Rectangle with width="
+                + getWidth()
+                + " and length="
+                + getLength()
+                + ", which is a subclass of "
+                + super.toString();
     }
+
     @Override
     public void resize(double percent) {
-        System.out.println("Diện tích của hình chữ nhật sau khi thay đổi là: "+(getArea()+getArea()*percent));
+        setLength(getLength()+(getLength()*percent/100));
+        setWidth(getWidth()+(getWidth()*percent/100));
+        System.out.println(getLength()*getWidth());
     }
 }

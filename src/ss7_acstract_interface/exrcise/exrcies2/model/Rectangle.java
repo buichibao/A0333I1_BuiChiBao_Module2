@@ -1,9 +1,15 @@
 package ss7_acstract_interface.exrcise.exrcies2.model;
 
-public class Rectangle {
-    private double width= 4;
-    private double length= 4;
-    public Rectangle() {
+public class Rectangle extends Shape implements Colorable{
+    private double width= 1;
+    private double length= 1;
+    public Rectangle(){
+
+    }
+    public Rectangle(String color, boolean filled, double width, double length) {
+        super(color, filled);
+        this.width = width;
+        this.length = length;
     }
 
     public Rectangle(double width, double length) {
@@ -38,5 +44,10 @@ public class Rectangle {
                 "width=" + width +
                 ", length=" + length +
                 '}';
+    }
+
+    @Override
+    public void howToColor() {
+        System.out.println("Hình chữ nhật");
     }
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class XeMayService implements IPhuongTien {
     private static List<XeMay> xeMayList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    ArrayList<String> thongTinHang = new ArrayList<>();
 
     @Override
     public  void themXe() {
@@ -24,7 +25,7 @@ public class XeMayService implements IPhuongTien {
         System.out.println("Nhập biển số xe cần xóa :");
         String bienSoXeCanXoa = scanner.nextLine();
         for (XeMay xeMay : xeMayList) {
-            if (bienSoXeCanXoa == xeMay.getBienKiemSoat()) {
+            if (bienSoXeCanXoa.equals(xeMay.getBienKiemSoat())) {
                 System.out.println("Bạn có muốn xóa xe máy có biển số " + bienSoXeCanXoa + " này không ");
                 System.out.println("1.Có");
                 System.out.println("2.Không");
@@ -71,8 +72,7 @@ public class XeMayService implements IPhuongTien {
     public XeMay nhapThuocTinhXeMay() {
         System.out.println("Nhập biển số xe :");
         String bienKiemSoat = scanner.nextLine();
-        System.out.println("Nhập tên hãng sản xuất :");
-        String tenHang = scanner.nextLine();
+        String tenHang =nhapThongTinHang();
         System.out.println("Nhập năm sản xuất :");
         int namSanXuat = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập chủ sở hữu :");
@@ -83,5 +83,21 @@ public class XeMayService implements IPhuongTien {
         XeMay xeMay = new XeMay(bienKiemSoat, tenHang, namSanXuat, chuSoHuu, congSuat);
         return xeMay;
     }
-    //String bienKiemSoat, String tenHang, int namSanXuat, String chuSoHuu, double congSuat)
+
+    public String nhapThongTinHang(){
+        System.out.println("Nhập tên hãng :");
+        String hangSX = scanner.nextLine();
+        System.out.println("Nhập mã hãng :");
+        String maSanXuat = scanner.nextLine();
+        System.out.println("Nhập quốc gia :");
+        String quocGia = scanner.nextLine();
+        thongTinHang.add(hangSX);
+        thongTinHang.add(maSanXuat);
+        thongTinHang.add(quocGia);
+        String h ="";
+        for (int i = 0; i <thongTinHang.size() ; i++) {
+            h+=thongTinHang.get(i);
+        }
+        return  h;
+    }
 }
