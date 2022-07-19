@@ -4,4 +4,6 @@ public interface IPerson {
     void add();
     void remove();
     void displayAll();
+    void findId();
+    void findName();
 }

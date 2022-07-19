@@ -11,6 +11,39 @@ import java.util.Scanner;
 public class TeacherService implements IPerson {
     private List<Teacher> teachers = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public void findId() {
+        boolean check = false;
+        System.out.println("Nhập id cần tìm :");
+        int idFind = Integer.parseInt(scanner.nextLine());
+        for (Teacher teacher:teachers) {
+            if(idFind==teacher.getId()){
+                System.out.println(teacher);
+                check = true;
+                break;
+            }
+        }
+        if(!check){
+            System.out.println("Không có giảng viên có id "+idFind);
+        }
+    }
+    @Override
+    public void findName() {
+       boolean check = false;
+        System.out.print("Nhập tên :");
+        String nameFind = scanner.nextLine();
+        for (Teacher teacher:teachers) {
+            if(teacher.getName().contains(nameFind)){
+                System.out.println(teacher);
+                check=true;
+            }
+        }
+        if(!check){
+            System.out.println("Không tồn tại giảng viên tên là "+nameFind);
+        }
+    }
+
     public void add() {
         Teacher teacher = inForTeacher();
         teachers.add(teacher);

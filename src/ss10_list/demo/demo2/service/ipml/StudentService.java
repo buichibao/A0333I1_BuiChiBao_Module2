@@ -10,6 +10,40 @@ import java.util.Scanner;
 public class StudentService implements IPerson {
     private  List<Student> studentList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public void findId() {
+      boolean check = false;
+        System.out.print("Nhập id cần tìm kiếm :");
+        int idFind = Integer.parseInt(scanner.nextLine());
+        for (Student student:studentList) {
+            if(idFind==student.getId()){
+                System.out.println(student);
+                check=true;
+                break;
+            }
+        }
+        if(!check){
+            System.out.println("Không tìm thấy học viên có id "+idFind);
+        }
+    }
+
+    @Override
+    public void findName() {
+      boolean check = false;
+        System.out.print("Nhập tên cần tìm :");
+        String nameFind = scanner.nextLine();
+        for (Student student:studentList) {
+            if(student.getName().contains(nameFind)){
+                System.out.println(student);
+                check=true;
+            }
+        }
+        if(!check){
+            System.out.println("Không tìm thấy sinh viên có tên "+nameFind);
+        }
+    }
+
     @Override
     public void add() {
         Student student = inForStudent();
