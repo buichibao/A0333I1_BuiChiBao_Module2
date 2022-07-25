@@ -3,9 +3,10 @@ package BaiTapThemHaiTT.QuanLyCodeGym.model;
 public class Teacher extends Person {
     private String specialist;
 
-    public Teacher(){
+    public Teacher() {
 
     }
+
 
     public Teacher(String specialist) {
         this.specialist = specialist;
@@ -24,12 +25,14 @@ public class Teacher extends Person {
         this.specialist = specialist;
     }
 
-    public  String getInfor(){
-        return String.format("%s,%s,%s,%s,%s\n",this.getId(),this.getName(),this.getDateOfBirth(),this.getSex(),this.getSpecialist());
+    @Override
+    public String getinFor() {
+        return String.format("%s,%s,%s,%s,%s\n", this.getId(), this.getName(), this.getDateOfBirth(), this.getSex(), this.getSpecialist());
     }
+
     @Override
     public String toString() {
-        return "Teacher{ " +super.toString()+
+        return "Teacher{ " + super.toString() +
                 " specialist = " + specialist + '\'' +
                 '}';
     }

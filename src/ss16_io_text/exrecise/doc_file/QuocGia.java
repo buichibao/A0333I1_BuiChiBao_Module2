@@ -16,9 +16,7 @@ public class QuocGia {
         this.ten = ten;
     }
 
-    public QuocGia(List<String> readFile) {
 
-    }
 
     public int getStt() {
         return stt;

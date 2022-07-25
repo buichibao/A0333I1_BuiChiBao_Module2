@@ -7,14 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteTeacherFile {
-    private static List<String> readFile(String path){
+    /**
+     *
+     *Đọc file
+     */
+    public static List<String> readFile(String path){
         List<String> stringList = new ArrayList<>();
-        String line;
+        File file = new File(path);
         try {
-            File file = new File(path);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+            String line;
             while ((line= bufferedReader.readLine())!=null){
                 stringList.add(line);
             }
@@ -24,19 +27,31 @@ public class ReadWriteTeacherFile {
         }
         return  stringList;
     }
-    public static List<Teacher> readTeacherFile(String path){
+
+    /**
+     *
+     * Lấy dữ liệu vừa đọc
+     */
+
+    public  static List<Teacher> readFileTeacher(String path){
         List<String> stringList = readFile(path);
         List<Teacher> teacherList = new ArrayList<>();
-        String []info;
-        for (String line :stringList) {
-            info = line.split(",");
+        String []info ;
+        for (String string:stringList) {
+            info=string.split(",");
             teacherList.add(new Teacher(info[0],info[1],info[2],info[3],info[4]));
         }
         return teacherList;
     }
-    public static void writeFile(String path,String data){
+
+    /**
+     *
+     * Ghi file
+     */
+
+    public static void  writeFile(String path,String data){
+        File file = new File(path);
         try{
-            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(data);
@@ -45,11 +60,15 @@ public class ReadWriteTeacherFile {
             e.printStackTrace();
         }
     }
-    public static  void writeTeachFile(String path,List<Teacher> teachers){
+
+
+    public static void writeFileTeach(List<Teacher> teacherList){
+        String PATH ="src\\BaiTapThemHaiTT\\QuanLyCodeGym\\data\\teacher.csv";
         StringBuilder data = new StringBuilder();
-        for (Teacher teacher:teachers) {
-            data.append(teacher.getInfor());
+        for (Teacher teacher:teacherList) {
+            data.append(teacher.getinFor());
         }
-        writeFile(path,data.toString());
+        writeFile(PATH,data.toString());
     }
+
 }

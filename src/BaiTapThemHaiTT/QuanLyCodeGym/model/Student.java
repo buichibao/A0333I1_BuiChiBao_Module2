@@ -8,6 +8,8 @@ public class Student  extends  Person{
 
     }
 
+
+
     public Student(double score, String className) {
         this.score = score;
         this.className = className;
@@ -35,9 +37,11 @@ public class Student  extends  Person{
         this.className = className;
     }
 
-    public  String getInfor(){
+    @Override
+    public String getinFor() {
         return String.format("%s,%s,%s,%s,%s,%s\n",this.getId(),this.getName(),this.getDateOfBirth(),this.getSex(),this.getScore(),this.getClassName());
     }
+
     @Override
     public String toString() {
         return "Student{ " +super.toString() +

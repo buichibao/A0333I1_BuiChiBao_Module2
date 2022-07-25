@@ -7,52 +7,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteStudentFile {
-    private static List<String> readFile(String path) {
-        List<String> stringList = new ArrayList<>();
-        String line;
+
+    public static List<String> readFile(String path) {
+        List<String> list = new ArrayList<>();
         try {
             File file = new File(path);
             FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReade = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
 
-            while ((line = bufferedReade.readLine()) != null) {
-                stringList.add(line);
+            while ((line=bufferedReader.readLine())!=null){
+
+                    list.add(line);
+
             }
-            bufferedReade.close();
+            bufferedReader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Lỗi File");
         }
-        return stringList;
+        return list;
     }
-
-    public static List<Student> readStudentFile(String path) {
-        List<String> stringList = readFile(path);
+    public static List<Student> readFileStudent(String path) {
+        List<String> newList = readFile(path);
         List<Student> studentList = new ArrayList<>();
-        String[] info;
-        for (String line : stringList) {
-            info = line.split(",");
-            studentList.add(new Student(info[0], info[1], info[2], info[3], Double.parseDouble(info[4]), info[5]));
+        String [] info;
+        for (String string:newList) {
+            info=string.split(",");
+            studentList.add(new Student(info[0],info[1],info[2],info[3],Double.parseDouble(info[4]),info[5]));
         }
         return studentList;
     }
+    public static void writeFile(String path,String data){
 
-    public static void writeFile(String path, String data) {
-        try {
-            File file = new File(path);
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(data);
-            bufferedWriter.close();
+        try{
+             File file = new File(path);
+             FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+             bufferedWriter.write(data);
+             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-    public  static  void writeStudentFile(String path,List<Student> students){
-        StringBuilder data = new StringBuilder();
-        for (Student student:students) {
-            data.append(student.getInfor());
+    public static void writeFileStudent(String path,List<Student> studentList){
+
+          StringBuilder data = new StringBuilder();
+        for (Student student:studentList) {
+            data.append(student.getinFor());
         }
         writeFile(path,data.toString());
     }
+
+
 }

@@ -49,6 +49,7 @@ public abstract class Person {
         this.sex = sex;
     }
 
+    public abstract String getinFor();
     @Override
     public String toString() {
         return

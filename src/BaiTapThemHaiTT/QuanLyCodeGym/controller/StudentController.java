@@ -28,10 +28,20 @@ public class StudentController {
               }
               switch (choose){
                   case 1:
+                      studentService.addElement();
+                      break;
                   case 2:
+                      studentService.disPlay();
+                      break;
                   case 3:
+                      studentService.removeById();
+                      break;
                   case 4:
+                      studentService.findName();
+                      break;
                   case 5:
+                      studentService.findId();
+                      break;
                   case 6:
                   case 7:
                       return;

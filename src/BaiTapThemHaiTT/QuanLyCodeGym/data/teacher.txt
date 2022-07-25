@@ -1,3 +1,0 @@
-GV1,Trương Tấn Hải,1998,Nam,Totur
-GV2,Nguyễn Ngọc Quang,1995,Nam,Totur
-GV3,Đặng Chí Trung,1990,Nam,,Totur
