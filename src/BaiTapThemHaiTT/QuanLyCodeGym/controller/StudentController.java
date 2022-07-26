@@ -43,6 +43,8 @@ public class StudentController {
                       studentService.findId();
                       break;
                   case 6:
+                      studentService.sortByName();
+                      break;
                   case 7:
                       return;
               }

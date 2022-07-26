@@ -4,12 +4,12 @@ import BaiTapThemHaiTT.QuanLyCodeGym.model.Student;
 import BaiTapThemHaiTT.QuanLyCodeGym.service.IStudentService;
 import BaiTapThemHaiTT.QuanLyCodeGym.utils.ReadWriteStudentFile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.zip.DataFormatException;
 
 public class StudentService implements IStudentService {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static String Date = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";
 
     final String PATH = "src\\BaiTapThemHaiTT\\QuanLyCodeGym\\data\\student.csv";
 
@@ -102,22 +102,47 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sortByName() {
-
+        List<Student> studentList = ReadWriteStudentFile.readFileStudent(PATH);
+        Collections.sort(studentList);
+        ReadWriteStudentFile.writeFileStudent(PATH,studentList);
+        for (Student student:studentList) {
+            System.out.println(student);
+        }
     }
 
     public static Student inforStudent() {
         System.out.print("Nhập id :");
         String id = SCANNER.nextLine();
+
         System.out.print("Nhập tên :");
         String name = SCANNER.nextLine();
-        System.out.print("Nhập ngày sinh : ");
-        String dateOfBirth = SCANNER.nextLine();
+
+        String dateOfBirth;
+        do {
+            try {
+                System.out.print("Nhập ngày sinh : ");
+                dateOfBirth = SCANNER.nextLine();
+                if(dateOfBirth.matches(Date)){
+                    break;
+                }else {
+                    throw new DataFormatException("Bạn nhập sai rồi mời bạn nhập lại");
+                }
+            } catch (DataFormatException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }while (true);
+
+
         System.out.print("Nhập giới tính :");
         String sex = SCANNER.nextLine();
+
         System.out.print("Nhập điểm :");
         double score = Double.parseDouble(SCANNER.nextLine());
+
         System.out.print("Nhập tên lớp :");
         String className = SCANNER.nextLine();
+
         return new Student(id, name, dateOfBirth, sex, score, className);
     }
 }

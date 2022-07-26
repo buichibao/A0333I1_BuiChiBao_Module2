@@ -1,5 +1,6 @@
 package BaiTapThemHaiTT.QuanLyCodeGym.utils;
 
+import BaiTapThemHaiTT.QuanLyCodeGym.model.Student;
 import BaiTapThemHaiTT.QuanLyCodeGym.model.Teacher;
 
 import java.io.*;
@@ -7,51 +8,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteTeacherFile {
-    /**
-     *
-     *Đọc file
-     */
     public static List<String> readFile(String path){
         List<String> stringList = new ArrayList<>();
-        File file = new File(path);
-        try {
+        try{
+            File file = new File(path);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+
             String line;
-            while ((line= bufferedReader.readLine())!=null){
-                stringList.add(line);
+            while ((line = bufferedReader.readLine())!=null){
+                  stringList.add(line);
             }
             bufferedReader.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return  stringList;
     }
-
-    /**
-     *
-     * Lấy dữ liệu vừa đọc
-     */
-
     public  static List<Teacher> readFileTeacher(String path){
         List<String> stringList = readFile(path);
-        List<Teacher> teacherList = new ArrayList<>();
-        String []info ;
+        List<Teacher>teacherList = new ArrayList<>();
+        String [] info;
         for (String string:stringList) {
-            info=string.split(",");
+            info =string.split(",");
             teacherList.add(new Teacher(info[0],info[1],info[2],info[3],info[4]));
         }
         return teacherList;
     }
-
-    /**
-     *
-     * Ghi file
-     */
-
-    public static void  writeFile(String path,String data){
-        File file = new File(path);
-        try{
+    public static void writeFile(String path,String data){
+        try {
+            File file = new File(path);
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(data);
@@ -60,15 +47,11 @@ public class ReadWriteTeacherFile {
             e.printStackTrace();
         }
     }
-
-
-    public static void writeFileTeach(List<Teacher> teacherList){
-        String PATH ="src\\BaiTapThemHaiTT\\QuanLyCodeGym\\data\\teacher.csv";
+    public static  void writeFileTeacher(String path,List<Teacher> teacherList){
         StringBuilder data = new StringBuilder();
         for (Teacher teacher:teacherList) {
             data.append(teacher.getinFor());
-        }
-        writeFile(PATH,data.toString());
+         }
+        writeFile(path,data.toString());
     }
-
 }

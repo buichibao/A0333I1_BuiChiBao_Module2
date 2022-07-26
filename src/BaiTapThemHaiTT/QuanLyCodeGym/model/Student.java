@@ -1,6 +1,6 @@
 package BaiTapThemHaiTT.QuanLyCodeGym.model;
 
-public class Student  extends  Person{
+public class Student  extends  Person implements Comparable<Student>{
     private double score;
     private String className;
 
@@ -48,5 +48,14 @@ public class Student  extends  Person{
                 " score = " + score +
                 ", className = " + className +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        String []name = new String[0];
+        for (int i = 0; i <getName().length() ; i++) {
+              name=getName().split(" ");
+        }
+        return name[name.length-1].compareTo(o.getName());
     }
 }

@@ -38,8 +38,14 @@ public class TeacherController {
                     teacherService.removeById();
                     break;
                 case 4:
+                    teacherService.findName();
+                    break;
                 case 5:
+                    teacherService.findId();
+                    break;
                 case 6:
+                    teacherService.sortByName();
+                    break;
                 case 7:
                     return;
             }
