@@ -1,9 +1,12 @@
 package case_study.controller;
 
+import case_study.service.impl.EmployeeService;
+
 import java.util.Scanner;
 
 public class EmployeeManagementController {
     public static void menuEmployeeManagement(){
+        EmployeeService employeeService = new EmployeeService();
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("=====Menu Employee Management=====");
@@ -19,8 +22,14 @@ public class EmployeeManagementController {
             }
             switch (choose){
                 case 1:
+                    employeeService.disPlay();
+                    break;
                 case 2:
+                    employeeService.add();
+                    break;
                 case 3:
+                    employeeService.edit();
+                    break;
                 case 4:
                     return;
             }
