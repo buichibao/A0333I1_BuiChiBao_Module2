@@ -1,30 +1,47 @@
 package case_study.controller;
 
+import case_study.Exception.EnterException;
+import case_study.service.impl.CustomerService;
+
 import java.util.Scanner;
 
 public class CustomerManagementController {
     public static void menuCustomerManagement(){
+        CustomerService customerService = new CustomerService();
         Scanner scanner = new Scanner(System.in);
+
         do{
-            System.out.println("====Menu Customer Management====");
-            System.out.println("1.Display list customers");
-            System.out.println("2.Add new customers");
-            System.out.println("3.Edit customers");
-            System.out.println("4.Return main menu");
-            System.out.print("Nhập chức năng bạn muốn sử dụng :");
-            int choose=Integer.parseInt(scanner.nextLine());
-            if(choose <1||choose>4){
-                System.out.println("Không có chức năng này mời bạn nhập lại!!");
-                continue;
+            try {
+                System.out.println("====Quản Lý Khách Hàng====");
+                System.out.println("1.Hiển thị danh sách khách hàng");
+                System.out.println("2.Thêm khách hàng mới");
+                System.out.println("3.Thay đổi thông tin khách hàng");
+                System.out.println("4.Quay lại menu chính");
+                System.out.print("Nhập chức năng bạn muốn sử dụng :");
+
+                int choose=Integer.parseInt(scanner.nextLine());
+                switch (choose){
+                    case 1:
+                        customerService.disPlay();
+                        break;
+                    case 2:
+                        customerService.add();
+                        break;
+                    case 3:
+                        customerService.edit();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        throw  new EnterException("Nhập lại đi sai rồi đó, phải là từ 1->4");
+                }
+            } catch (EnterException e) {
+                System.out.println(e.getMessage());
+            }catch (NumberFormatException e){
+                System.out.println("Nhập số đi");
             }
-            switch (choose){
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    return;
-            }
-        }while (true);
+        } while (true);
+
     }
 
 }

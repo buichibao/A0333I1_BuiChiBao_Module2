@@ -1,5 +1,7 @@
 package case_study.controller;
 
+import case_study.Exception.EnterException;
+
 import java.util.Scanner;
 
 public class FuramaController {
@@ -8,38 +10,43 @@ public class FuramaController {
         Scanner scanner = new Scanner(System.in);
         int choose;
         do{
-            System.out.println("====Menu====");
-            System.out.println("1.Employee Management");
-            System.out.println("2.Customer Management");
-            System.out.println("3.Facility Management");
-            System.out.println("4.Booking Management");
-            System.out.println("5.Promotion Management");
-            System.out.println("6.Exit");
-            System.out.print("Chọn chức năng :");
-            choose = Integer.parseInt(scanner.nextLine());
-            if(choose<1||choose>6){
-                System.out.print("Không có chức năng này mời bạn chọn lại:");
-                continue;
+            try {
+                System.out.println("====Chương Trình Quản Lý Furama====");
+                System.out.println("1.Quản lý nhân viên");
+                System.out.println("2.Quản lý khách hàng");
+                System.out.println("3.Quản lý cơ sở");
+                System.out.println("4.Quản lý đặt chỗ");
+                System.out.println("5.Quản lý khuyến mãi");
+                System.out.println("6.Thoát");
+                System.out.print("Chọn chức năng :");
+                choose = Integer.parseInt(scanner.nextLine());
+                switch (choose){
+                    case 1:
+                        EmployeeManagementController.menuEmployeeManagement();
+                        break;
+                    case 2:
+                        CustomerManagementController.menuCustomerManagement();
+                        break;
+                    case 3:
+                        FacilityManagementController.menuFacilityManagement();
+                        break;
+                    case 4:
+                        BookingManagermentController.menuBookingManagerment();
+                        break;
+                    case 5:
+                        PromotionManagementController.promotionManagement();
+                        break;
+                    case 6:
+                        System.exit(0);
+                    default:
+                        throw new EnterException("Bạn phải nhập số từ 1->6,mời bạn nhập lại");
+                }
+            }catch (EnterException e){
+                System.out.println(e.getMessage());
+            }catch (NumberFormatException e){
+                System.out.println("Bạn đang nhập vào kí tự , bạn hãy nhập số đi");
             }
-            switch (choose){
-                case 1:
-                    EmployeeManagementController.menuEmployeeManagement();
-                    break;
-                case 2:
-                    CustomerManagementController.menuCustomerManagement();
-                    break;
-                case 3:
-                    FacilityManagementController.menuFacilityManagement();
-                    break;
-                case 4:
-                    BookingManagermentController.menuBookingManagerment();
-                    break;
-                case 5:
-                    PromotionManagementController.promotionManagement();
-                    break;
-                case 6:
-                    System.exit(0);
-            }
+
         }while(true);
 
     }
